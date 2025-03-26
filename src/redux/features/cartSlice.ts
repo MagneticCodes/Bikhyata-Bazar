@@ -37,7 +37,7 @@ const cartSlice = createSlice({
         // Item exists, increase quantity
         existingItem.quantity += newItem.quantity || 1;
       } else {
-        // New item, add to cart with default quantity of 1 if not specified
+        // New item, add to
         state.items.push({
           ...newItem,
           quantity: newItem.quantity || 1,
