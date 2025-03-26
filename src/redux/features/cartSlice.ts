@@ -47,8 +47,7 @@ const cartSlice = createSlice({
 
     // Modified to accept either an array or a single item
     addItems: (state, action) => {
-        console.log(state);
-        console.log(action);
+        
       },
 
     // Update item quantity
