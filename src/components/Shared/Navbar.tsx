@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ShoppingCart } from "lucide-react";
 import Container from "../common/Container";
+import logo from "../../assets/logo/bigkhato_bazar_logo.png";
 
 interface NavItem {
   label: string;
@@ -18,6 +19,7 @@ const navItems: NavItem[] = [
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [cartItemCount, setCartItemCount] = useState(3); // Example cart count, replace with your actual cart state
 
   return (
     <div className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md shadow-md">
@@ -25,10 +27,9 @@ const Navbar: React.FC = () => {
         <nav className="bg-transparent">
           <div className="flex justify-between h-16">
             <div className="flex-shrink-0 flex items-center">
-              <span className="text-4xl font-bold">
-                <span className="text-black">ESHOP</span>
-                <span className="text-emerald-400">SPOT</span>
-              </span>
+              <a href="/" className="flex items-center space-x-2">
+                <img src={logo} alt="BigKhato Bazar" className="h-48" />
+              </a>
             </div>
 
             {/* Desktop menu */}
@@ -42,10 +43,40 @@ const Navbar: React.FC = () => {
                   {item.label}
                 </a>
               ))}
+
+              {/* Cart Icon with Badge */}
+              <div className="relative ml-4">
+                <a
+                  href="/cart"
+                  className="text-gray-600 hover:text-emerald-400 transition-colors duration-200 p-2"
+                >
+                  <ShoppingCart size={30} />
+                  {cartItemCount > 0 && (
+                    <span className="absolute -top-2 -right-2 bg-emerald-500 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">
+                      {cartItemCount}
+                    </span>
+                  )}
+                </a>
+              </div>
             </div>
 
-            {/* Mobile menu button */}
-            <div className="md:hidden flex items-center">
+            {/* Mobile menu button and cart icon */}
+            <div className="md:hidden flex items-center space-x-2">
+              {/* Cart Icon with Badge for mobile */}
+              <div className="relative">
+                <a
+                  href="/cart"
+                  className="text-gray-600 hover:text-emerald-400 transition-colors duration-200 p-1"
+                >
+                  <ShoppingCart size={22} />
+                  {cartItemCount > 0 && (
+                    <span className="absolute -top-1 -right-1 bg-emerald-500 text-white text-xs font-bold rounded-full h-4 w-4 flex items-center justify-center">
+                      {cartItemCount > 9 ? "9+" : cartItemCount}
+                    </span>
+                  )}
+                </a>
+              </div>
+
               <button
                 onClick={() => setIsOpen(!isOpen)}
                 className="text-gray-600 hover:text-emerald-400 transition-colors duration-200"
