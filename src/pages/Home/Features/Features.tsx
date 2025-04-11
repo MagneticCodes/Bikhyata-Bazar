@@ -5,7 +5,7 @@ const Features: React.FC = () => {
   const features = [
     {
       icon: <Truck className="w-8 h-8 text-emerald-400" />,
-      title: 'FREE SHIPPING',
+      title: 'CHEAP SHIPPING',
       description: 'Shipping in World for orders over $99'
     },
     {

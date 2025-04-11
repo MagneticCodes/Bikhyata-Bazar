@@ -52,7 +52,7 @@ const Navbar: React.FC = () => {
                 >
                   <ShoppingCart size={30} />
                   {cartItemCount > 0 && (
-                    <span className="absolute -top-2 -right-2 bg-emerald-500 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">
+                    <span className="absolute top-[12px] -right-2 bg-emerald-500 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">
                       {cartItemCount}
                     </span>
                   )}
