@@ -6,7 +6,7 @@ const Features: React.FC = () => {
     {
       icon: <Truck className="w-8 h-8 text-emerald-400" />,
       title: 'CHEAP SHIPPING',
-      description: 'Shipping in World for orders over $99'
+      description: 'Shipping charge in Dhaka-60 taka outside Dhaka-120 taka'
     },
     {
       icon: <Gift className="w-8 h-8 text-emerald-400" />,

@@ -2,7 +2,7 @@ import React from "react";
 
 // category img
 import categoryImg1 from "../../../assets/Images/CateogryImg/smart_fan.webp";
-import categoryImg2 from "../../../assets/Images/CateogryImg/automative_fan.png";
+import categoryImg2 from "../../../assets/Proudct Gallery/watch.png";
 import categoryImg3 from "../../../assets/Images/CateogryImg/regular_fan.avif";
 
 const ProductCategories: React.FC = () => {
@@ -13,7 +13,7 @@ const ProductCategories: React.FC = () => {
       count: "230 Products",
     },
     {
-      title: "Automotive Fan",
+      title: "Smart Watch",
       image: categoryImg2,
       count: "189 Products",
     },

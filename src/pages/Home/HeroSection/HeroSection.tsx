@@ -4,9 +4,12 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
 
 // image
-import heroImg1 from "../../../assets/Images/HeroImg/hero_img_01.jpg";
-import heroImg2 from "../../../assets/Images/HeroImg/hero_img_02.png";
-import heroImg3 from "../../../assets/Images/HeroImg/hero_img_03.webp";
+import heroImg1 from "../../../assets/Slider/9 qultra.jpg";
+import heroImg2 from "../../../assets/Slider/fa-13p.png";
+import heroImg3 from "../../../assets/Slider/sensor light.webp";
+// import heroImg1 from "../../../assets/Images/HeroImg/hero_img_01.jpg";
+// import heroImg2 from "../../../assets/Images/HeroImg/hero_img_02.png";
+// import heroImg3 from "../../../assets/Images/HeroImg/hero_img_03.webp";
 // import heroImg4 from "../../../assets/Images/HeroImg/hero_img_04.jpg";
 
 import "swiper/swiper-bundle.css";

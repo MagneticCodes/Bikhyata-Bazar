@@ -4,20 +4,11 @@ import { Phone, Mail, MapPin } from "lucide-react";
 const ContactSection: React.FC = () => {
   const locations = [
     {
-      country: "UNITED STATES",
-      phone: "+ 123 456 7890",
-      email: "admin@betashop",
-      address: "201 Oak Street Building 27\nManchester, USA",
-      mapSrc:
-        "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d47615.84665749706!2d-71.48488361918054!3d42.99557603760287!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89e24ed368cf6e2d%3A0x70876f797ccdf87b!2sManchester%2C%20NH!5e0!3m2!1sen!2sus!4v1707434895484!5m2!1sen!2sus",
-    },
-    {
-      country: "AUSTRALIA",
-      phone: "+ 123 456 7890",
-      email: "super-admin@gmail.com",
-      address: "201 Oak Street Building 27\nManchester, USA",
-      mapSrc:
-        "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d47615.84665749706!2d-71.48488361918054!3d42.99557603760287!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89e24ed368cf6e2d%3A0x70876f797ccdf87b!2sManchester%2C%20NH!5e0!3m2!1sen!2sus!4v1707434895484!5m2!1sen!2sus",
+      country: "Bangladesh",
+      phone: "01865939492,01731312086 ",
+      email: "lalinsarker145@gmail.com",
+      address: "Road no-19,block-D,section-6 mirpur Dhaka-1216, Dhaka, Bangladesh",
+      mapSrc: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3651.8116558335574!2d90.3614504!3d23.7530164!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c11b3e1a5e2f%3A0x1b77c6f50b8bbafe!2sMirpur%206%2C%20Dhaka!5e0!3m2!1sen!2sbd!4v1648749471772!5m2!1sen!2sbd"
     },
   ];
 
@@ -73,6 +64,11 @@ const ContactSection: React.FC = () => {
             <input
               type="text"
               placeholder="Name"
+              className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-400"
+            />
+            <input
+              type="number"
+              placeholder="Phone"
               className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-400"
             />
             <input
