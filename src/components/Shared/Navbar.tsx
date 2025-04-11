@@ -19,6 +19,8 @@ const navItems: NavItem[] = [
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
+
+  // @ts-ignore
   const [cartItemCount, setCartItemCount] = useState(3); // Example cart count, replace with your actual cart state
 
   return (
