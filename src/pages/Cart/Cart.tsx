@@ -7,7 +7,7 @@ import {
   X,
 } from "lucide-react";
 
-const Cart = () => {
+const Cart: React.FC = () => {
   // Static cart items data
   const [cartItems, setCartItems] = useState([
     {

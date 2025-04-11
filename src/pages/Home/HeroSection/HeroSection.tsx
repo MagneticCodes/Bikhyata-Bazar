@@ -7,7 +7,7 @@ import { Autoplay, Pagination } from "swiper/modules";
 import heroImg1 from "../../../assets/Images/HeroImg/hero_img_01.jpg";
 import heroImg2 from "../../../assets/Images/HeroImg/hero_img_02.png";
 import heroImg3 from "../../../assets/Images/HeroImg/hero_img_03.webp";
-import heroImg4 from "../../../assets/Images/HeroImg/hero_img_04.jpg";
+// import heroImg4 from "../../../assets/Images/HeroImg/hero_img_04.jpg";
 
 import "swiper/swiper-bundle.css";
 
