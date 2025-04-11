@@ -5,7 +5,7 @@ const ContactSection: React.FC = () => {
   const locations = [
     {
       country: "Bangladesh",
-      phone: "01865939492,01731312086 ",
+      phone: "01865939492-Nagad,01731312086-bkash",
       email: "lalinsarker145@gmail.com",
       address: "Road no-19,block-D,section-6 mirpur Dhaka-1216, Dhaka, Bangladesh",
       mapSrc: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3651.8116558335574!2d90.3614504!3d23.7530164!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c11b3e1a5e2f%3A0x1b77c6f50b8bbafe!2sMirpur%206%2C%20Dhaka!5e0!3m2!1sen!2sbd!4v1648749471772!5m2!1sen!2sbd"
