@@ -3,6 +3,12 @@ import { ArrowRight, ShoppingCart, CreditCard } from "lucide-react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
 
+// image
+import heroImg1 from "../../../assets/Images/HeroImg/hero_img_01.jpg";
+import heroImg2 from "../../../assets/Images/HeroImg/hero_img_02.png";
+import heroImg3 from "../../../assets/Images/HeroImg/hero_img_03.webp";
+import heroImg4 from "../../../assets/Images/HeroImg/hero_img_04.jpg";
+
 import "swiper/swiper-bundle.css";
 
 interface SlideType {
@@ -14,19 +20,19 @@ interface SlideType {
 
 const slides: SlideType[] = [
   {
-    image: "https://images.pexels.com/photos/5632402/pexels-photo-5632402.jpeg",
+    image: heroImg1,
     title: "Best",
     subtitle: "Shop",
     description: "Experience seamless shopping with our integrated cart system",
   },
   {
-    image: "https://images.pexels.com/photos/5632398/pexels-photo-5632398.jpeg",
+    image: heroImg2,
     title: "Smart",
     subtitle: "Shopping",
     description: "Discover the future of online shopping with us",
   },
   {
-    image: "https://images.pexels.com/photos/5632397/pexels-photo-5632397.jpeg",
+    image: heroImg3,
     title: "Secure",
     subtitle: "Payments",
     description: "Shop with confidence using our secure payment system",
@@ -123,16 +129,16 @@ const HeroSection: React.FC = () => {
                     <img
                       src={slide.image}
                       alt={`${slide.title} ${slide.subtitle}`}
-                      className="w-full h-full object-cover"
+                      className=" h-[400px] object-cover"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
                   </div>
 
-                  <div className="absolute -right-4 top-1/2 transform -translate-y-1/2">
+                  {/* <div className="absolute -right-4 top-1/2 transform -translate-y-1/2">
                     <div className="w-16 h-16 md:w-20 md:h-20 bg-emerald-400 rounded-full flex items-center justify-center shadow-lg">
                       <ArrowRight className="w-6 h-6 md:w-8 md:h-8 text-white" />
                     </div>
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </SwiperSlide>
