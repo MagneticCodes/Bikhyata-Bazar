@@ -1,85 +1,88 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-// Define types
-interface CartItem {
-  id: string;
+// Define the cart item interface with the fields used in the component
+export interface CartItem {
+  id: string | number;
   name: string;
-  price: number;
   quantity: number;
+  price?: number;
+  selling_price?: number;
   image?: string;
-  // Add any other product properties you need
+  [key: string]: any; // For any additional properties
 }
 
-interface CartState {
-  items: CartItem[];
-  status: "idle" | "loading" | "succeeded" | "failed";
-  error: string | null;
+export interface CartState {
+  cartItems: CartItem[];
 }
 
-// Initial state
 const initialState: CartState = {
-  items: [],
-  status: "idle",
-  error: null,
+  cartItems: [],
 };
 
-// Create the slice
-const cartSlice = createSlice({
-  name: "cart",
+export const cartSlice = createSlice({
+  name: "cartItems", // Changed to match the state structure in the component
   initialState,
   reducers: {
-    // Add a single item to cart
-    addItem: (state, action: PayloadAction<CartItem>) => {
-      const newItem = action.payload;
-      const existingItem = state.items.find((item) => item.id === newItem.id);
-
+    addToCartItems: (
+      state,
+      action: PayloadAction<Omit<CartItem, "quantity"> & { quantity?: number }>
+    ) => {
+      const existingItem = state.cartItems.find(
+        (item) => item.id === action.payload.id
+      );
       if (existingItem) {
-        // Item exists, increase quantity
-        existingItem.quantity += newItem.quantity || 1;
+        existingItem.quantity += action.payload.quantity || 1;
       } else {
-        // New item, add to
-        state.items.push({
-          ...newItem,
-          quantity: newItem.quantity || 1,
+        state.cartItems.push({
+          id: action.payload.id,
+          name: action.payload.name,
+          ...action.payload,
+          quantity: action.payload.quantity || 1,
         });
       }
     },
-
-    // Modified to accept either an array or a single item
-    addItems: () => {
-        
-      },
-
-    // Update item quantity
-    updateItemQuantity: (
+    // showCartItems: (state) => {
+    //   return state.cartItems;
+    // },
+    cartRemoveItems: (state, action: PayloadAction<string | number>) => {
+      state.cartItems = state.cartItems.filter(
+        (item) => item.id !== action.payload
+      );
+    },
+    updateCartQuantity: (
       state,
-      action: PayloadAction<{ id: string; quantity: number }>
+      action: PayloadAction<{ id: string | number; quantity: number }>
     ) => {
       const { id, quantity } = action.payload;
-      const item = state.items.find((item) => item.id === id);
-
-      if (item) {
-        // Ensure quantity is never less than 1
-        item.quantity = Math.max(1, quantity);
+      const existingItem = state.cartItems.find((item) => item.id === id);
+      if (existingItem) {
+        existingItem.quantity = quantity;
       }
     },
-
-    // Remove item from cart
-    removeItem: (state, action: PayloadAction<string>) => {
-      const id = action.payload;
-      state.items = state.items.filter((item) => item.id !== id);
-    },
-
-    // Clear entire cart
     clearCart: (state) => {
-      state.items = [];
+      state.cartItems = [];
     },
   },
 });
 
-// Export actions
-export const { addItem, addItems, updateItemQuantity, removeItem, clearCart } =
-  cartSlice.actions;
+export const {
+  addToCartItems,
+  // showCartItems,
+  cartRemoveItems,
+  updateCartQuantity,
+  clearCart,
+} = cartSlice.actions;
 
-// Export reducer
+// Selectors
+export const selectCartItems = (state: { cartItems: CartState }) =>
+  state.cartItems.cartItems;
+export const selectCartTotal = (state: { cartItems: CartState }) =>
+  state.cartItems.cartItems.reduce(
+    (total, item) =>
+      total + (item.selling_price || item.price || 0) * item.quantity,
+    0
+  );
+export const selectCartItemCount = (state: { cartItems: CartState }) =>
+  state.cartItems.cartItems.reduce((count, item) => count + item.quantity, 0);
+
 export default cartSlice.reducer;
