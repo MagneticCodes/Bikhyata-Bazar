@@ -19,16 +19,15 @@ interface ProductCardProps {
 
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   const dispatch = useDispatch();
-  
-  const handleAddToCart = (product: Product) => {
+
+  const handleAddToCart = (product: any) => {
     // Convert the product to a CartItem format and add it to the cart
-    dispatch(addToCartItems({
-      id: product.id,
-      name: product.title, // Map title to name
-      price: product.price,
-      quantity: 1,
-      image: product.image
-    }));
+    dispatch(
+      addToCartItems({
+        ...product,
+        quantity: 1,
+      })
+    );
   };
 
   return (

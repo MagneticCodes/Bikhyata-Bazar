@@ -1,30 +1,30 @@
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Navigation } from "swiper/modules";
+import CeoImg from "../../../assets/Images/Ceo/ceo.jpeg";
 
 const Testimonials: React.FC = () => {
   const testimonials = [
     {
-      name: "MARTIN JOHE",
+      name: "Lalin sarker",
       position: "CO-FOUNDER / CEO",
-      company: "FASTCOMPANY LTD.",
-      image: "https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg",
-      text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+      company: "Bikhyata Bazar.",
+      image: CeoImg,
     },
-    {
-      name: "SARAH CHEN",
-      position: "CREATIVE DIRECTOR",
-      company: "DESIGN STUDIO",
-      image: "https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg",
-      text: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-    },
-    {
-      name: "JAMES WILSON",
-      position: "MARKETING HEAD",
-      company: "BRAND INC.",
-      image: "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg",
-      text: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.",
-    },
+    // {
+    //   name: "SARAH CHEN",
+    //   position: "CREATIVE DIRECTOR",
+    //   company: "DESIGN STUDIO",
+    //   image: "https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg",
+    //   text: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    // },
+    // {
+    //   name: "JAMES WILSON",
+    //   position: "MARKETING HEAD",
+    //   company: "BRAND INC.",
+    //   image: "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg",
+    //   text: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.",
+    // },
   ];
 
   return (
@@ -60,9 +60,9 @@ const Testimonials: React.FC = () => {
                 <h3 className="text-xl font-bold mb-1">{testimonial.name}</h3>
                 <p className="text-gray-600 mb-1">{testimonial.position}</p>
                 <p className="text-emerald-500 mb-6">{testimonial.company}</p>
-                <p className="text-gray-600 leading-relaxed">
+                {/* <p className="text-gray-600 leading-relaxed">
                   {testimonial.text}
-                </p>
+                </p> */}
               </div>
             </SwiperSlide>
           ))}

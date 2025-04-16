@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 import { X, Minus, Plus } from "lucide-react";
 import { useSelector, useDispatch } from "react-redux";
-import { cartRemoveItems, updateCartQuantity } from "../../redux/features/cartSlice";
+import {
+  cartRemoveItems,
+  updateCartQuantity,
+} from "../../redux/features/cartSlice";
 
-// Import your CheckoutModal when ready
-// import CheckoutModal from "../../components/common/Modals/CheckoutModal";
-
-// Define CartItem interface if not already imported from your slice
 interface CartItem {
   id: string | number;
   name: string;
@@ -16,8 +15,6 @@ interface CartItem {
   [key: string]: any;
 }
 
-// Update RootState to match your actual Redux store structure
-// This is the key fix - we need to check what your actual state structure is
 interface RootState {
   // Try one of these options based on your Redux setup:
   cart?: { cartItems: CartItem[] }; // Adjust this based on your actual Redux store structure
@@ -25,35 +22,18 @@ interface RootState {
 
 const AddToCart: React.FC = () => {
   const dispatch = useDispatch();
-  
-  // Try each of these selectors one by one to find which one works
-  // with your Redux store structure
-  const carts = useSelector((state: any) => {
-    // Option 1: Direct in state root
-    if (state.cartItems) return state.cartItems;
-    
-    // Option 2: Nested under "cart"
-    if (state.cart?.cartItems) return state.cart.cartItems;
-    
-    // Option 3: Nested under "cartItems.cartItems"
-    if (state.cartItems?.cartItems) return state.cartItems.cartItems;
-    
-    // Fallback to empty array if none found
-    console.log("Redux state structure:", state); // Log the actual structure for debugging
-    return [];
-  });
 
-  console.log(carts, "CARTS");
-  
+  const cartItems = useSelector((state: any) => state?.cart?.cartItems);
+
   const [orderInfo, setOrderInfo] = useState<Record<string, any>>({});
   const [open, setOpen] = useState<boolean>(false);
-  
+
   const handleOpen = (): void => setOpen(true);
   const handleClose = (): void => setOpen(false);
 
   // Type-safe updateQuantity function
   const updateQuantity = (id: string | number, delta: number): void => {
-    const item = carts.find((item: CartItem) => item.id === id);
+    const item = cartItems.find((item: CartItem) => item.id === id);
     if (item) {
       const newQuantity = Math.max(1, item.quantity + delta);
       dispatch(updateCartQuantity({ id, quantity: newQuantity }));
@@ -66,8 +46,9 @@ const AddToCart: React.FC = () => {
   };
 
   // Calculate totals with proper type checking
-  const subtotal = carts.reduce(
-    (sum: number, item: CartItem) => sum + (item.selling_price || 0) * item.quantity,
+  const subtotal = cartItems.reduce(
+    (sum: number, item: CartItem) =>
+      sum + (item.selling_price || 0) * item.quantity,
     0
   );
   const shippingCost = 80;
@@ -85,8 +66,8 @@ const AddToCart: React.FC = () => {
             <div>SUBTOTAL</div>
           </div>
 
-          {carts?.length > 0 ? (
-            carts.map((item: CartItem) => (
+          {cartItems?.length > 0 ? (
+            cartItems.map((item: CartItem) => (
               <div
                 key={item.id}
                 className="grid grid-cols-4 gap-4 items-center py-4 border-t"
@@ -167,14 +148,14 @@ const AddToCart: React.FC = () => {
 
               <button
                 className={`w-full py-3 bg-red-500 text-white rounded hover:bg-red-600 ${
-                  !carts?.length ? 'opacity-50 cursor-not-allowed' : ''
+                  !cartItems?.length ? "opacity-50 cursor-not-allowed" : ""
                 }`}
                 onClick={handleOpen}
-                disabled={!carts?.length}
+                disabled={!cartItems?.length}
               >
                 PROCEED TO CHECKOUT
               </button>
-              
+
               {/* Uncomment when CheckoutModal is available
               <CheckoutModal
                 open={open}

@@ -8,7 +8,7 @@ export interface CartItem {
   price?: number;
   selling_price?: number;
   image?: string;
-  [key: string]: any; // For any additional properties
+  [key: string]: any; 
 }
 
 export interface CartState {
@@ -20,30 +20,20 @@ const initialState: CartState = {
 };
 
 export const cartSlice = createSlice({
-  name: "cartItems", // Changed to match the state structure in the component
+  name: "cartItems",
   initialState,
   reducers: {
-    addToCartItems: (
-      state,
-      action: PayloadAction<Omit<CartItem, "quantity"> & { quantity?: number }>
-    ) => {
-      const existingItem = state.cartItems.find(
-        (item) => item.id === action.payload.id
-      );
-      if (existingItem) {
-        existingItem.quantity += action.payload.quantity || 1;
-      } else {
-        state.cartItems.push({
-          id: action.payload.id,
-          name: action.payload.name,
-          ...action.payload,
-          quantity: action.payload.quantity || 1,
+    addToCartItems: (state, action: PayloadAction<CartItem | CartItem[]>) => {
+      // If action.payload is an array, add all products
+      if (Array.isArray(action.payload)) {
+        action.payload.forEach((product) => {
+          state.cartItems.push(product);
         });
+      } else {
+        // Add single product
+        state.cartItems.push(action.payload);
       }
     },
-    // showCartItems: (state) => {
-    //   return state.cartItems;
-    // },
     cartRemoveItems: (state, action: PayloadAction<string | number>) => {
       state.cartItems = state.cartItems.filter(
         (item) => item.id !== action.payload
@@ -54,7 +44,9 @@ export const cartSlice = createSlice({
       action: PayloadAction<{ id: string | number; quantity: number }>
     ) => {
       const { id, quantity } = action.payload;
-      const existingItem = state.cartItems.find((item) => item.id === id);
+      const existingItem = state.cartItems.find(
+        (item) => item.id === id
+      );
       if (existingItem) {
         existingItem.quantity = quantity;
       }
@@ -67,7 +59,6 @@ export const cartSlice = createSlice({
 
 export const {
   addToCartItems,
-  // showCartItems,
   cartRemoveItems,
   updateCartQuantity,
   clearCart,
@@ -83,6 +74,9 @@ export const selectCartTotal = (state: { cartItems: CartState }) =>
     0
   );
 export const selectCartItemCount = (state: { cartItems: CartState }) =>
-  state.cartItems.cartItems.reduce((count, item) => count + item.quantity, 0);
+  state.cartItems.cartItems.reduce(
+    (count, item) => count + item.quantity,
+    0
+  );
 
 export default cartSlice.reducer;
