@@ -1,6 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { addItem } from "../../../redux/features/cartSlice";
+import { addToCartItems } from "../../../redux/features/cartSlice";
+// import { addItem } from "../../../redux/features/cartSlice";
 
 // Define the product type
 interface Product {
@@ -18,16 +19,15 @@ interface ProductCardProps {
 
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   const dispatch = useDispatch();
-  
-  const handleAddToCart = (product: Product) => {
+
+  const handleAddToCart = (product: any) => {
     // Convert the product to a CartItem format and add it to the cart
-    dispatch(addItem({
-      id: product.id,
-      name: product.title, // Map title to name
-      price: product.price,
-      quantity: 1,
-      image: product.image
-    }));
+    dispatch(
+      addToCartItems({
+        ...product,
+        quantity: 1,
+      })
+    );
   };
 
   return (

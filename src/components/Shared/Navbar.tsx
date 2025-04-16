@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Menu, X, ShoppingCart } from "lucide-react";
 import Container from "../common/Container";
 import logo from "../../assets/logo/bigkhato_bazar_logo.png";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 interface NavItem {
   label: string;
@@ -20,6 +22,9 @@ const navItems: NavItem[] = [
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
 
+  const cartItems = useSelector((state: any) => state?.cart?.cartItems);
+  // console.log(cartItems);
+
   // @ts-ignore
   const [cartItemCount, setCartItemCount] = useState(3); // Example cart count, replace with your actual cart state
 
@@ -37,37 +42,41 @@ const Navbar: React.FC = () => {
             {/* Desktop menu */}
             <div className="hidden md:flex items-center space-x-1">
               {navItems.map((item) => (
-                <a
+                <Link
                   key={item.label}
-                  href={item.href}
+                  to={item.href}
                   className="text-gray-600 hover:text-emerald-400 px-3 py-2 text-lg font-medium transition-colors duration-200"
                 >
                   {item.label}
-                </a>
+                </Link>
               ))}
 
               {/* Cart Icon with Badge */}
-              <div className="relative ml-4">
-                <a
-                  href="/cart"
-                  className="text-gray-600 hover:text-emerald-400 transition-colors duration-200 p-2"
-                >
-                  <ShoppingCart size={30} />
-                  {cartItemCount > 0 && (
-                    <span className="absolute top-[12px] -right-2 bg-emerald-500 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">
-                      {cartItemCount}
-                    </span>
-                  )}
-                </a>
-              </div>
+              {/* <div className="relative ml-4"> */}
+              <Link
+                to={"/add-to-cart"}
+                className="text-gray-600 relative ml-4  hover:text-emerald-400 transition-colors duration-200 p-2"
+              >
+                <ShoppingCart size={30} />
+                {cartItems?.length > 0 ? (
+                  <span className="absolute top-[3px] -right-1 bg-emerald-500 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">
+                    {cartItems?.length}
+                  </span>
+                ) : (
+                  <span className="absolute top-[3px] -right-1 bg-emerald-500 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">
+                    0
+                  </span>
+                )}
+              </Link>
+              {/* </div> */}
             </div>
 
             {/* Mobile menu button and cart icon */}
             <div className="md:hidden flex items-center space-x-2">
               {/* Cart Icon with Badge for mobile */}
               <div className="relative">
-                <a
-                  href="/cart"
+                <Link
+                  to="/add-to-cart"
                   className="text-gray-600 hover:text-emerald-400 transition-colors duration-200 p-1"
                 >
                   <ShoppingCart size={22} />
@@ -76,7 +85,7 @@ const Navbar: React.FC = () => {
                       {cartItemCount > 9 ? "9+" : cartItemCount}
                     </span>
                   )}
-                </a>
+                </Link>
               </div>
 
               <button
