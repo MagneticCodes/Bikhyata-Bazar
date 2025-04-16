@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { X, Minus, Plus } from "lucide-react";
 import { useSelector, useDispatch } from "react-redux";
 import {
@@ -15,21 +15,16 @@ interface CartItem {
   [key: string]: any;
 }
 
-interface RootState {
-  // Try one of these options based on your Redux setup:
-  cart?: { cartItems: CartItem[] }; // Adjust this based on your actual Redux store structure
-}
-
 const AddToCart: React.FC = () => {
   const dispatch = useDispatch();
 
   const cartItems = useSelector((state: any) => state?.cart?.cartItems);
 
-  const [orderInfo, setOrderInfo] = useState<Record<string, any>>({});
-  const [open, setOpen] = useState<boolean>(false);
+  // const [orderInfo, setOrderInfo] = useState<Record<string, any>>({});
+  // const [open, setOpen] = useState<boolean>(false);
 
-  const handleOpen = (): void => setOpen(true);
-  const handleClose = (): void => setOpen(false);
+  // const handleOpen = (): void => setOpen(true);
+  // const handleClose = (): void => setOpen(false);
 
   // Type-safe updateQuantity function
   const updateQuantity = (id: string | number, delta: number): void => {
@@ -150,7 +145,7 @@ const AddToCart: React.FC = () => {
                 className={`w-full py-3 bg-red-500 text-white rounded hover:bg-red-600 ${
                   !cartItems?.length ? "opacity-50 cursor-not-allowed" : ""
                 }`}
-                onClick={handleOpen}
+                // onClick={handleOpen}
                 disabled={!cartItems?.length}
               >
                 PROCEED TO CHECKOUT
