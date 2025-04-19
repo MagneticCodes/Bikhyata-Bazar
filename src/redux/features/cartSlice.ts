@@ -24,14 +24,31 @@ export const cartSlice = createSlice({
   initialState,
   reducers: {
     addToCartItems: (state, action: PayloadAction<CartItem | CartItem[]>) => {
-      // If action.payload is an array, add all products
+      // console.log(action.payload, 27);
+      
+      // If action.payload is an array, add all products (with duplicate check)
       if (Array.isArray(action.payload)) {
         action.payload.forEach((product) => {
-          state.cartItems.push(product);
+          const existingItem = state.cartItems.find(item => item.id === product.id);
+          if (!existingItem) {
+            state.cartItems.push(product);
+          } else {
+            // Optional: You can show an error here or increment quantity
+            console.error(`Product ${product.title} is already in the cart!`);
+          }
         });
       } else {
-        // Add single product
-        state.cartItems.push(action.payload);
+        // For single product, check if it exists first
+        // @ts-ignore
+        const existingItem = state.cartItems.find((item: any) => item.id === action.payload.id);
+        if (!existingItem) {
+          state.cartItems.push(action.payload);
+        } else {
+          // Throw an error or handle the duplicate case
+          throw new Error('This product is already in your cart!');
+          // Alternatively, you could increment quantity:
+          // existingItem.quantity += 1;
+        }
       }
     },
     cartRemoveItems: (state, action: PayloadAction<string | number>) => {

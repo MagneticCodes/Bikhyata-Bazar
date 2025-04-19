@@ -37,6 +37,7 @@ import ProductCard from "../../../components/common/Products/ProductCard";
 const FeaturedProducts: React.FC = () => {
   const products = [
     {
+      id: 1,
       title: "AISOLOVE No F5",
       price: 2200.0,
       oldPrice: 2500.0,
@@ -44,12 +45,14 @@ const FeaturedProducts: React.FC = () => {
       tag: "POPULAR",
     },
     {
+      id: 2,
       title: "AISOLOVE No F5P Max",
       price: 3000.0,
       oldPrice: 3500.0,
       image: AISOLOVE_02,
     },
     {
+      id: 3,
       title: "Awei F30 Mini Desktop Fan",
       price: 1800.0,
       oldPrice: 2200.0,
@@ -57,6 +60,7 @@ const FeaturedProducts: React.FC = () => {
       tag: "NEW",
     },
     {
+      id: 4,
       title: "DP-7626 Rechargeable Table Fan With LED Light",
       price: 700.0,
       oldPrice: 950.0,
@@ -64,12 +68,14 @@ const FeaturedProducts: React.FC = () => {
       tag: "SALE",
     },
     {
+      id: 5,
       title: "Double Ended Spray Fan",
       price: 2200.0,
       oldPrice: 2600.0,
       image: Double_ended,
     },
     {
+      id: 6,
       title: "DP Duration Power Model-7638",
       price: 1400.0,
       oldPrice: 1600.0,
@@ -77,12 +83,14 @@ const FeaturedProducts: React.FC = () => {
       tag: "NEW",
     },
     {
+      id: 7,
       title: "DP-7627 Rechargeable Portable USB Fan",
       price: 1900.0,
       oldPrice: 2200.0,
       image: Dp_7627,
     },
     {
+      id: 8,
       title: "Folding Fan Model LR-2018",
       price: 1000.0,
       oldPrice: 1350.0,
@@ -90,12 +98,14 @@ const FeaturedProducts: React.FC = () => {
       tag: "SALE",
     },
     {
+      id: 9,
       title: "JISULIFE Model FA26",
       price: 1700.0,
       oldPrice: 1950.0,
       image: JISULIFE_MODEL,
     },
     {
+      id: 10,
       title: "LED Fan JR-2022",
       price: 1250.0,
       oldPrice: 1500.0,
@@ -103,12 +113,14 @@ const FeaturedProducts: React.FC = () => {
       tag: "NEW",
     },
     {
+      id: 11,
       title: "Xundd XDOT-024 USB Rechargeable Oscillating Fan",
       price: 2700.0,
       oldPrice: 3100.0,
       image: Xundd_XDOT,
     },
     {
+      id: 12,
       title: "Air Cooler Fan",
       price: 1400.0,
       oldPrice: 1800.0,
@@ -116,6 +128,7 @@ const FeaturedProducts: React.FC = () => {
       tag: "POPULAR",
     },
     {
+      id: 13,
       title: "Carter Circulation Fan",
       price: 3200.0,
       oldPrice: 3600.0,
@@ -123,18 +136,21 @@ const FeaturedProducts: React.FC = () => {
       tag: "PREMIUM",
     },
     {
+      id: 14,
       title: "Desktop Fan",
       price: 2000.0,
       oldPrice: 2300.0,
       image: desktop_fan,
     },
     {
+      id: 15,
       title: "Desktop Fan M321",
       price: 2000.0,
       oldPrice: 2400.0,
       image: esktop_fan_m321,
     },
     {
+      id: 16,
       title: "Desktop Protocol Charger Model-DP-7639",
       price: 1250.0,
       oldPrice: 1450.0,
@@ -142,18 +158,21 @@ const FeaturedProducts: React.FC = () => {
       tag: "NEW",
     },
     {
+      id: 17,
       title: "DP-7624 Fan",
       price: 1800.0,
       oldPrice: 2100.0,
       image: dp_7624,
     },
     {
+      id: 18,
       title: "DP-7637 Fan",
       price: 2000.0,
       oldPrice: 2300.0,
       image: dp_7637_fan,
     },
     {
+      id: 19,
       title: "DP-7637 Fan",
       price: 2000.0,
       oldPrice: 2350.0,
@@ -161,12 +180,14 @@ const FeaturedProducts: React.FC = () => {
       tag: "BESTSELLER",
     },
     {
+      id: 20,
       title: "DP Duration Power Fan",
       price: 1800.0,
       oldPrice: 2050.0,
       image: dp_duration_power,
     },
     {
+      id: 21,
       title: "Handle Fan Model-F2D",
       price: 1500.0,
       oldPrice: 1850.0,
@@ -174,6 +195,7 @@ const FeaturedProducts: React.FC = () => {
       tag: "POPULAR",
     },
     {
+      id: 22,
       title: "Jisulife Table Fan 7 M-FA13P",
       price: 3600.0,
       oldPrice: 4000.0,
@@ -181,18 +203,21 @@ const FeaturedProducts: React.FC = () => {
       tag: "PREMIUM",
     },
     {
+      id: 23,
       title: "Joykali SMD Rechargeable LED Mini Fan Model-YG-729",
       price: 1350.0,
       oldPrice: 1550.0,
       image: joykali_smd_rechargeable,
     },
     {
+      id: 24,
       title: "JY Super JY-2218",
       price: 1900.0,
       oldPrice: 2150.0,
       image: jy_Super_jy_2218,
     },
     {
+      id: 25,
       title: "JY Super Model-JY-2523",
       price: 1400.0,
       oldPrice: 1650.0,
@@ -200,12 +225,14 @@ const FeaturedProducts: React.FC = () => {
       tag: "SALE",
     },
     {
+      id: 26,
       title: "JY-1881 Fan",
       price: 1100.0,
       oldPrice: 1300.0,
       image: jy_1881_1100taka,
     },
     {
+      id: 27,
       title: "Mini Handle Fan Model-FA20",
       price: 1100.0,
       oldPrice: 1350.0,
@@ -213,12 +240,14 @@ const FeaturedProducts: React.FC = () => {
       tag: "SALE",
     },
     {
+      id: 28,
       title: "Mini Turbo Fan Model-YM88154",
       price: 1550.0,
       oldPrice: 1800.0,
       image: mini_turbo_fan,
     },
     {
+      id: 29,
       title: "Supermoon Portable Mini Fan Model-SM6615",
       price: 2500.0,
       oldPrice: 2900.0,
@@ -226,6 +255,7 @@ const FeaturedProducts: React.FC = () => {
       tag: "POPULAR",
     },
     {
+      id: 30,
       title: 'XPower 6" Mini Fan',
       price: 900.0,
       oldPrice: 1100.0,
@@ -233,12 +263,14 @@ const FeaturedProducts: React.FC = () => {
       tag: "SALE",
     },
     {
+      id: 31,
       title: 'XPower 7" US Mini Fan',
       price: 1050.0,
       oldPrice: 1250.0,
       image: xpower_7,
     },
     {
+      id: 32,
       title: "XPower WD-202",
       price: 1350.0,
       oldPrice: 1600.0,
