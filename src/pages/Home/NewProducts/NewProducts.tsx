@@ -72,7 +72,7 @@ const NewProducts: React.FC = () => {
   ];
 
   return (
-    <section className="py-16 px-4">
+    <section id="special" className="py-16 px-4">
       <div className="max-w-7xl mx-auto">
         <h2 className="text-3xl font-bold text-center mb-2">NEW PRODUCTS</h2>
         <div className="w-24 h-1 bg-emerald-400 mx-auto mb-12"></div>

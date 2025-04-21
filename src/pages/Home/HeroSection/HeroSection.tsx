@@ -46,7 +46,7 @@ const HeroSection: React.FC = () => {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 overflow-hidden mt-16">
+    <div id="hero" className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 overflow-hidden mt-16">
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-20 pb-16 sm:pt-24 sm:pb-20">
         <div className="absolute inset-0">
           <div className="absolute inset-0 bg-gradient-to-r from-emerald-50/20 to-transparent" />
