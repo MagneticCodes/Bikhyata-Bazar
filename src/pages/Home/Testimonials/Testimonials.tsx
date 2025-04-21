@@ -1,75 +1,114 @@
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination, Navigation } from "swiper/modules";
+import { Pagination, Navigation, EffectFade, Autoplay } from "swiper/modules";
 import CeoImg from "../../../assets/Images/Ceo/ceo.jpeg";
+import { FaQuoteLeft } from "react-icons/fa";
 
 const Testimonials: React.FC = () => {
   const testimonials = [
     {
-      name: "Lalin sarker",
+      name: "Lalin Sarker",
       position: "CO-FOUNDER / CEO",
-      company: "Bikhyata Bazar.",
+      company: "Bikhyata Bazar.com",
       image: CeoImg,
+      text: "Working with this team has transformed our business operations completely. Their attention to detail and commitment to excellence is unmatched in the industry.",
     },
-    // {
-    //   name: "SARAH CHEN",
-    //   position: "CREATIVE DIRECTOR",
-    //   company: "DESIGN STUDIO",
-    //   image: "https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg",
-    //   text: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-    // },
-    // {
-    //   name: "JAMES WILSON",
-    //   position: "MARKETING HEAD",
-    //   company: "BRAND INC.",
-    //   image: "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg",
-    //   text: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.",
-    // },
+    
   ];
 
   return (
-    <section className="py-16 bg-gray-50">
-      <div className="max-w-7xl mx-auto px-4">
-        <h2 className="text-3xl font-bold text-center mb-2">TESTIMONIALS</h2>
-        <div className="w-24 h-1 bg-emerald-400 mx-auto mb-12"></div>
+    <section id="about" className="py-24 bg-gradient-to-b from-white to-gray-50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex flex-col md:flex-row justify-between items-center mb-16">
+          <div>
+            <h2 className="text-4xl font-bold mb-2 text-gray-800">
+              Client <span className="text-emerald-500">Testimonials</span>
+            </h2>
+            <div className="w-24 h-1 bg-emerald-400 mb-4"></div>
+            <p className="text-gray-600 max-w-lg">
+              Hear what our clients have to say about their experience working with us
+            </p>
+          </div>
+          <div className="flex mt-6 md:mt-0 space-x-4">
+            <button className="swiper-button-prev !static !w-12 !h-12 flex items-center justify-center rounded-full bg-emerald-50 text-emerald-500 border border-emerald-200 hover:bg-emerald-500 hover:text-white transition-all">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M15 18l-6-6 6-6"/>
+              </svg>
+            </button>
+            <button className="swiper-button-next !static !w-12 !h-12 flex items-center justify-center rounded-full bg-emerald-50 text-emerald-500 border border-emerald-200 hover:bg-emerald-500 hover:text-white transition-all">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M9 18l6-6-6-6"/>
+              </svg>
+            </button>
+          </div>
+        </div>
 
         <Swiper
-          modules={[Pagination, Navigation]}
+          modules={[Pagination, Navigation, EffectFade, Autoplay]}
           spaceBetween={30}
           slidesPerView={1}
+          breakpoints={{
+            640: { slidesPerView: 1 },
+            768: { slidesPerView: 2 },
+            1024: { slidesPerView: 3 },
+          }}
           pagination={{
             clickable: true,
-            bulletClass: "swiper-pagination-bullet bg-emerald-400",
+            dynamicBullets: true,
+            bulletClass: "swiper-pagination-bullet",
+            bulletActiveClass: "swiper-pagination-bullet-active bg-emerald-500",
           }}
           navigation={{
             nextEl: ".swiper-button-next",
             prevEl: ".swiper-button-prev",
           }}
-          className="pb-12"
+          autoplay={{
+            delay: 5000,
+            disableOnInteraction: false,
+          }}
+          className="!overflow-visible"
         >
           {testimonials.map((testimonial, index) => (
-            <SwiperSlide key={index}>
-              <div className="flex flex-col items-center text-center max-w-2xl mx-auto">
-                <div className="w-24 h-24 rounded-full overflow-hidden mb-6">
+            <SwiperSlide key={index} className="pb-14">
+              <div className="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl h-full flex flex-col">
+                <div className="relative h-60 overflow-hidden">
                   <img
                     src={testimonial.image}
                     alt={testimonial.name}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover object-center"
                   />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
                 </div>
-                <h3 className="text-xl font-bold mb-1">{testimonial.name}</h3>
-                <p className="text-gray-600 mb-1">{testimonial.position}</p>
-                <p className="text-emerald-500 mb-6">{testimonial.company}</p>
-                {/* <p className="text-gray-600 leading-relaxed">
-                  {testimonial.text}
-                </p> */}
+                
+                <div className="p-8 relative flex-1 flex flex-col">
+                  <div className="absolute -top-8 left-8 bg-emerald-500 w-16 h-16 rounded-full flex items-center justify-center shadow-lg">
+                    <FaQuoteLeft className="text-white text-xl" />
+                  </div>
+                  
+                  <p className="text-gray-600 leading-relaxed mb-6 text-base flex-1">
+                    "{testimonial.text}"
+                  </p>
+                  
+                  <div className="border-t border-gray-100 pt-4">
+                    <h3 className="text-xl font-bold text-gray-800">{testimonial.name}</h3>
+                    <p className="text-sm text-gray-500 font-medium">{testimonial.position}</p>
+                    <p className="text-emerald-500 font-medium text-sm">{testimonial.company}</p>
+                  </div>
+                </div>
               </div>
             </SwiperSlide>
           ))}
         </Swiper>
-
-        <div className="swiper-button-prev !text-emerald-500"></div>
-        <div className="swiper-button-next !text-emerald-500"></div>
+        
+        <div className="flex justify-center mt-12">
+          <a href="#contact" className="inline-flex items-center px-6 py-3 bg-emerald-500 text-white font-medium rounded-full hover:bg-emerald-600 transition-colors shadow-md hover:shadow-lg">
+            Share Your Experience
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="ml-2">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </a>
+        </div>
       </div>
     </section>
   );
