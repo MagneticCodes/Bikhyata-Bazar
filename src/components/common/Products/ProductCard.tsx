@@ -21,12 +21,11 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 
   const handleAddToCart = async (product: Product) => {
     try {
-      // Dispatch the action and wait for it to complete
-      // Fix: Map the title property to name property as required by CartItem
+      
       await dispatch(
         addToCartItems({
           id: product.id,
-          name: product.title, // This is the key fix - map title to name
+          name: product.title, 
           price: product.price,
           oldPrice: product.oldPrice,
           image: product.image,
@@ -37,15 +36,13 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 
       // Show success message if added to cart
       Swal.fire({
-        // position: "top-end",
         icon: "success",
-        title: "Your work has been saved",
+        title: "Product added to cart!",
+        text: "You can view your cart to proceed with the purchase.",
         showConfirmButton: false,
         timer: 1500,
       });
     } catch (error) {
-      // console.log(error);
-      // Show error message if product already in cart
       Swal.fire({
         position: "top-end",
         icon: "error",
@@ -62,7 +59,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
     <div className="group">
       <div className="relative overflow-hidden rounded-lg mb-4">
         <img
-          src={product.image}
+          src={`https://bikkhatobazar.magneticcodes.com/${product.image}`}
           alt={product.title}
           className="w-full h-96 object-cover transform group-hover:scale-110 transition-transform duration-500"
         />
