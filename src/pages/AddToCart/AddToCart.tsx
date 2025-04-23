@@ -23,7 +23,6 @@ const AddToCart: React.FC = () => {
   const [open, setOpen] = useState(false);
   // const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  // console.log(cartItems, 27);
 
   // State for totals to ensure they're properly calculated and displayed
   const [totals, setTotals] = useState({
@@ -116,7 +115,7 @@ const AddToCart: React.FC = () => {
                     <X size={16} />
                   </button>
                   <img
-                    src={item.image}
+                    src={`https://bikkhatobazar.magneticcodes.com/${item.image}`}
                     alt={item.name || "Product"}
                     className="w-20 h-20 object-cover rounded border"
                     onError={(e) => {
@@ -196,7 +195,10 @@ const AddToCart: React.FC = () => {
                   </span>
                 </div>
 
-                <button onClick={() => setOpen(true)} className="w-full py-3 bg-[#E95827] text-white rounded-md transition-colors font-medium mt-4">
+                <button
+                  onClick={() => setOpen(true)}
+                  className="w-full py-3 bg-[#E95827] text-white rounded-md transition-colors font-medium mt-4"
+                >
                   PROCEED TO CHECKOUT
                 </button>
               </div>
@@ -210,3 +212,31 @@ const AddToCart: React.FC = () => {
 };
 
 export default AddToCart;
+
+// {
+//   "customer": {
+//       "fullName": "fg",
+//       "phoneNumber": "014",
+//       "email": "",
+//       "address": "dsfds",
+//       "city": "Dhaka",
+//       "zipCode": "",
+//       "notes": "gjhgjh"
+//   },
+//   "items": [
+//       {
+//           "product_id": 1,
+//           "quantity": 1
+//       },
+//       {
+//           "id": 2,
+
+//           "quantity": 5
+//       }
+//   ],
+//   "totals": {
+//       "subtotal": 5200,
+//       "shippingCost": 80,
+//       "total": 5280
+//   }
+// }

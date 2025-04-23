@@ -3,6 +3,7 @@ import { X } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
 import Swal from "sweetalert2";
 import { clearCart } from "../../../../redux/features/cartSlice";
+import { useCreateAnOrderMutation } from "../../../../redux/baseApi/baseApi";
 
 interface CartItem {
   id: string | number;
@@ -22,6 +23,8 @@ interface CheckoutModalProps {
 const CheckoutModal: React.FC<CheckoutModalProps> = ({ open, handleClose }) => {
   const cartItems = useSelector((state: any) => state?.cart?.cartItems || []);
   const dispatch = useDispatch();
+
+  const [createAnOrder, { isLoading }] = useCreateAnOrderMutation();
 
   const [formData, setFormData] = useState({
     fullName: "",
@@ -68,27 +71,66 @@ const CheckoutModal: React.FC<CheckoutModalProps> = ({ open, handleClose }) => {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     // Process the order with formData and cartItems
-    console.log("Order details:", {
-      customer: formData,
-      items: cartItems,
-      totals,
-    });
+    // console.log("Order details:", {
+    //   customer: formData,
+    //   items: cartItems,
+    //   totals,
+    // });
+    const newOrder = {
+      customer_name: formData.fullName,
+      phone_number: formData.phoneNumber,
+      email: formData.email,
+      address: formData.address,
+      city: formData.city,
+      zip_code: formData.zipCode,
+      notes: formData.notes,
+      items: cartItems.map((item: CartItem) => ({
+        product_id: item.id,
+        quantity: item.quantity,
+        price: item.selling_price || item.price || 0,
+      })),
+    };
+
+    try {
+      const response = await createAnOrder(newOrder).unwrap();
+      // console.log(response);
+      if (response?.totals ) {
+        Swal.fire({
+          icon: "success",
+          title: "Order placed successfully!",
+          text: "Your order has been placed successfully.",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        dispatch(clearCart());
+        handleClose();
+      }
+    } catch (error) {
+      Swal.fire({
+        icon: "error",
+        title: "Order failed!",
+        text: "There was an error placing your order.",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    }
+
     // Here you would typically send this data to your backend
-    Swal.fire({
-      // position: "top-end",
-      icon: "success",
-      title: "Order placed successfully!",
-      text: "Your order has been placed successfully.",
-      showConfirmButton: false,
-      timer: 1500,
-    }).then(() => {
-      // Clear the cart after successful order placement
-      dispatch(clearCart());
-      handleClose();
-    });
+    // Swal.fire({
+    //   // position: "top-end",
+    //   icon: "success",
+    //   title: "Order placed successfully!",
+    //   text: "Your order has been placed successfully.",
+    //   showConfirmButton: false,
+    //   timer: 1500,
+    // }).then(() => {
+    //   // Clear the cart after successful order placement
+    //   dispatch(clearCart());
+    //   handleClose();
+    // });
   };
 
   // Helper function to get item price
@@ -205,7 +247,7 @@ const CheckoutModal: React.FC<CheckoutModalProps> = ({ open, handleClose }) => {
                   >
                     <div className="w-12 h-12 rounded border overflow-hidden flex-shrink-0">
                       <img
-                        src={item.image}
+                        src={`https://bikkhatobazar.magneticcodes.com/${item.image}`}
                         alt={item.name}
                         className="w-full h-full object-cover"
                         onError={(e) => {
@@ -255,12 +297,22 @@ const CheckoutModal: React.FC<CheckoutModalProps> = ({ open, handleClose }) => {
             </div>
 
             {/* Submit Button */}
-            <button
-              onClick={handleSubmit}
-              className="w-full mt-6 py-3 bg-[#E95827] text-white rounded-md hover:bg-opacity-90 transition-colors font-medium"
-            >
-              PLACE ORDER
-            </button>
+            {isLoading ? (
+              <button
+                onClick={handleSubmit}
+                disabled
+                className="w-full mt-6 py-3 bg-[#E95827] text-white rounded-md hover:bg-opacity-90 transition-colors font-medium"
+              >
+                {isLoading ? "Order Creating..." : "PLACE ORDER"}
+              </button>
+            ) : (
+              <button
+                onClick={handleSubmit}
+                className="w-full mt-6 py-3 bg-[#E95827] text-white rounded-md hover:bg-opacity-90 transition-colors font-medium"
+              >
+                {isLoading ? "Order Creating..." : "PLACE ORDER"}
+              </button>
+            )}
           </div>
         </div>
       </div>
